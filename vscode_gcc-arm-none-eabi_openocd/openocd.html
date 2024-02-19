@@ -1,0 +1,847 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>唐国林的个人博客 | 唐国林的个人博客</title><meta name="author" content="TGL"><meta name="copyright" content="TGL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="openocd使用笔记  TGL 2021-12-23     openocd 安装 openocd 使用 命令行基本使用: Telnet 终端骚操作   帮助列表  openocd 是一个开源调试器(Open On-Chip Debugger),官网 www.openocd.org从openocd 下载页面自行选择所需版本,这儿还提供工具链如 gcc-arm-none-eabi 的下载 ope">
+<meta property="og:type" content="website">
+<meta property="og:title" content="唐国林的个人博客">
+<meta property="og:url" content="https://tglingli.github.io/vscode_gcc-arm-none-eabi_openocd/openocd.html">
+<meta property="og:site_name" content="唐国林的个人博客">
+<meta property="og:description" content="openocd使用笔记  TGL 2021-12-23     openocd 安装 openocd 使用 命令行基本使用: Telnet 终端骚操作   帮助列表  openocd 是一个开源调试器(Open On-Chip Debugger),官网 www.openocd.org从openocd 下载页面自行选择所需版本,这儿还提供工具链如 gcc-arm-none-eabi 的下载 ope">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-19T14:37:13.035Z">
+<meta property="article:modified_time" content="2024-02-19T14:37:13.035Z">
+<meta property="article:author" content="TGL">
+<meta property="article:tag" content="blogs">
+<meta property="article:tag" content="arm">
+<meta property="article:tag" content="Embedded">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://tglingli.github.io/vscode_gcc-arm-none-eabi_openocd/openocd"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '唐国林的个人博客',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-02-19 22:37:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">唐国林的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">唐国林的个人博客</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><h1 id=""><a href="#" class="headerlink" title=""></a></h1><section style="text-align:center;font-size:20px;font-weight:bold;color:green;background:lightgray;border-radius:10px">
+openocd使用笔记
+<p style="text-align:right;font-size:14px;font-weight:normal;color:blue;margin-right:10px">
+TGL 2021-12-23
+</p>
+</section>
+
+<ul>
+<li><a href="#openocd-%E5%AE%89%E8%A3%85">openocd 安装</a></li>
+<li><a href="#openocd-%E4%BD%BF%E7%94%A8">openocd 使用</a><ul>
+<li><a href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">命令行基本使用:</a></li>
+<li><a href="#telnet-%E7%BB%88%E7%AB%AF%E9%AA%9A%E6%93%8D%E4%BD%9C">Telnet 终端骚操作</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%AE%E5%8A%A9%E5%88%97%E8%A1%A8">帮助列表</a><hr/></li>
+</ul>
+<p>openocd 是一个开源调试器(Open On-Chip Debugger),<a target="_blank" rel="noopener" href="https://openocd.org/">官网 www.openocd.org</a><br>从<a target="_blank" rel="noopener" href="https://gnutoolchains.com/arm-eabi/openocd/">openocd 下载页面</a>自行选择所需版本,这儿还提供工具链如 gcc-arm-none-eabi 的下载</p>
+<h2 id="openocd-安装"><a href="#openocd-安装" class="headerlink" title="openocd 安装"></a>openocd 安装</h2><p>直接解压即可，最好把解压后的目录添加到环境变量中去，这样就可以直接在终端中使用了！<br>jlink 有可以会出现 openocd 识别不了的情况需要修改 usb 驱动<br>下图为原来机子上的 jlink 驱图<br><img src="/image/openocd.md/2021-12-23-02-27-15.png"><br>用 Zadig 修改 jlink 驱动<br><img src="/image/openocd.md/2021-12-23-02-28-19.png"><br>修改后 openocd 能识别的驱动<br><img src="/image/openocd.md/2021-12-23-02-28-34.png"><br>注：<mark>当驱动切换后 jlink 程序将识别不到 jlink 调试器了，只有将驱重装回 jlink 默认驱动才能识别到。</mark></p>
+<p>我从上面的页面下载的 openocd 解压后,drivers&#x2F;UsbDriverTool.exe”是一个很不错的小工具，它可以切换 jlink 的 usb 驱动.这样当使用 openocd 时选择”BLUCK”驱动，使用 jlink 是选择”jlink”驱动<br><img src="/image/openocd%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0.md/2021-12-23-02-33-59.png"></p>
+<h2 id="openocd-使用"><a href="#openocd-使用" class="headerlink" title="openocd 使用"></a>openocd 使用</h2><h3 id="命令行基本使用"><a href="#命令行基本使用" class="headerlink" title="命令行基本使用:"></a>命令行基本使用:</h3><ol>
+<li>指定 openocd 要驱动的调试器驱动类型<br>用<code>openocd -c &quot;adapter driver jlink&quot;</code>指定适配器驱动是 jlink<br>可以用<code>openocd -c &quot;adapter list&quot;</code>来查看支持的驱动类型</li>
+<li>指定指定调试器的传输速度<br>用<code>openocd -c &quot;adapter driver jlink&quot; -c &quot;adapter speed 4000&quot;</code>指定 jlink,传输速率为 4MHz</li>
+<li>指定调试器跟目标板之间的传输协议<br>用<code>openocd -c &quot;adapter driver jlink&quot; -c &quot;adapter speed 4000&quot; -c &quot;transport select swd&quot;</code>指事定 jlin 为 swd 协议</li>
+</ol>
+<p>命令行输入最后一条命令会得到如下结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ openocd -c <span class="string">&quot;adapter driver jlink&quot;</span> -c <span class="string">&quot;adapter speed 4000&quot;</span> -c <span class="string">&quot;transport select swd&quot;</span></span><br><span class="line">Open On-Chip Debugger 0.11.0 (2021-11-18) [https://github.com/sysprogs/openocd]</span><br><span class="line">Licensed under GNU GPL v2</span><br><span class="line">libusb1 09e75e98b4d9ea7909e8837b7a3f00dda4589dc3</span><br><span class="line">For bug reports, <span class="built_in">read</span></span><br><span class="line">        http://openocd.org/doc/doxygen/bugs.html</span><br><span class="line">adapter speed: 4000 kHz</span><br><span class="line"></span><br><span class="line">swd</span><br><span class="line">Info : Listening on port 6666 <span class="keyword">for</span> tcl connections</span><br><span class="line">Info : Listening on port 4444 <span class="keyword">for</span> telnet connections</span><br><span class="line">Warn : Failed to open device: LIBUSB_ERROR_NOT_SUPPORTED.</span><br><span class="line">Info : J-Link V9 compiled May  7 2021 16:26:12</span><br><span class="line">Info : Hardware version: 9.50</span><br><span class="line">Info : VTarget = 3.296 V</span><br><span class="line">Info : clock speed 4000 kHz</span><br><span class="line">Warn : gdb services need one or more targets defined</span><br></pre></td></tr></table></figure>
+
+<p>此时虽然可以看到 openocd 已跟 jlink 连上了,但有 1 个警告说 gdb 服务需要指定目标芯片才行。<br><code>openocd -c &quot;adapter driver jlink&quot; -c &quot;transport select swd&quot; -f &quot;target/stm32f1x.cfg&quot;</code><br>可以完成目标板指定。<br>“target&#x2F;stm32f1x.cfg”是 openocd 安装目录 share&#x2F;openocd&#x2F;scripts&#x2F;的文件，该文件指定了 stm32f103c8 的内存分布以及调试器的速度为 1MHz 所的命令行就可以不用指定传输速率了该命令指行结果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ openocd -c <span class="string">&quot;adapter driver jlink&quot;</span>  -c <span class="string">&quot;transport select swd&quot;</span> -f <span class="string">&quot;target/stm32f1x.cfg&quot;</span></span><br><span class="line">Open On-Chip Debugger 0.11.0 (2021-11-18) [https://github.com/sysprogs/openocd]</span><br><span class="line">Licensed under GNU GPL v2</span><br><span class="line">libusb1 09e75e98b4d9ea7909e8837b7a3f00dda4589dc3</span><br><span class="line">For bug reports, <span class="built_in">read</span></span><br><span class="line">        http://openocd.org/doc/doxygen/bugs.html</span><br><span class="line">swd</span><br><span class="line">Info : DEPRECATED target event trace-config; use TPIU events &#123;pre,post&#125;-&#123;<span class="built_in">enable</span>,<span class="built_in">disable</span>&#125;</span><br><span class="line">Info : Listening on port 6666 <span class="keyword">for</span> tcl connections</span><br><span class="line">Info : Listening on port 4444 <span class="keyword">for</span> telnet connections</span><br><span class="line">Warn : Failed to open device: LIBUSB_ERROR_NOT_SUPPORTED.</span><br><span class="line">Info : J-Link V9 compiled May  7 2021 16:26:12</span><br><span class="line">Info : Hardware version: 9.50</span><br><span class="line">Info : VTarget = 3.296 V</span><br><span class="line">Info : clock speed 1000 kHz</span><br><span class="line">Info : SWD DPIDR 0x1ba01477</span><br><span class="line">Info : stm32f1x.cpu: Cortex-M3 r1p1 processor detected</span><br><span class="line">Info : stm32f1x.cpu: target has 6 breakpoints, 4 watchpoints</span><br><span class="line">Info : starting gdb server <span class="keyword">for</span> stm32f1x.cpu on 3333</span><br><span class="line">Info : Listening on port 3333 <span class="keyword">for</span> gdb connections</span><br></pre></td></tr></table></figure>
+
+<p>从上面输出可以看到 openocd 开启了一个 telnet 端口号 4444，现在我们就有别外一个终端 telnet 到这个端口上就可以对 openocd 进行操作了在另一个中终端中输入<br><code>telnet localhost 4444</code>输出如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$telnet</span> localhost 4444</span><br><span class="line">Open On-Chip Debugger</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到成功登录在终端输入”help”可以查看更多帮助内容。</p>
+<h3 id="Telnet-终端骚操作"><a href="#Telnet-终端骚操作" class="headerlink" title="Telnet 终端骚操作"></a>Telnet 终端骚操作</h3><ol>
+<li>目标板停机、重启、日志重定向到文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; halt</span><br><span class="line">target halted due to debug-request, current mode: Thread</span><br><span class="line">xPSR: 0x21000000 pc: 0x080007a2 msp: 0x20004fe8</span><br><span class="line">&gt; reset</span><br><span class="line">&gt; log_output log.txt</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>下载程序到目录板,校验程序</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; program led.elf</span><br><span class="line">target halted due to debug-request, current mode: Thread</span><br><span class="line">xPSR: 0x01000000 pc: 0x08001780 msp: 0x20005000</span><br><span class="line">** Programming Started **</span><br><span class="line">device <span class="built_in">id</span> = 0x20036410</span><br><span class="line">flash size = 128kbytes</span><br><span class="line">** Programming Finished **</span><br><span class="line">&gt; verify_image led.elf</span><br><span class="line">verified 8932 bytes <span class="keyword">in</span> 0.161601s (53.976 KiB/s)</span><br><span class="line"></span><br><span class="line">&gt; program led.elf verify</span><br><span class="line">target halted due to debug-request, current mode: Thread</span><br><span class="line">xPSR: 0x01000000 pc: 0x08001780 msp: 0x20005000</span><br><span class="line">** Programming Started **</span><br><span class="line">** Programming Finished **</span><br><span class="line">** Verify Started **</span><br><span class="line">** Verified OK **</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将芯片程序读出到文件里</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; flash read_bank 0 flash_read.bin 0 0x10000</span><br><span class="line">device <span class="built_in">id</span> = 0x20036410</span><br><span class="line">flash size = 128kbytes</span><br><span class="line">wrote 65536 bytes to file flash_read.bin from flash bank 0 at offset 0x00000000 <span class="keyword">in</span> 1.204395s (53.139 KiB/s)</span><br></pre></td></tr></table></figure>
+
+<p>将 64KbyteFlash 内容全部读取到 flash_read.bin 文件中</p>
+<h2 id="帮助列表"><a href="#帮助列表" class="headerlink" title="帮助列表"></a>帮助列表</h2><!-- #region -->
+<pre>
+adapter
+      adapter command group (command valid any time)
+  adapter assert |deassert [srst|trst [assert|deassert srst|trst]]
+        Controls SRST and TRST lines.
+  adapter deassert |assert [srst|trst [deassert|assert srst|trst]]
+        Controls SRST and TRST lines.
+  adapter driver driver_name
+        Select a debug adapter driver (configuration command)
+  adapter list
+        List all built-in debug adapter drivers (command valid any time)
+  adapter name
+        Returns the name of the currently selected adapter (driver)
+        (command valid any time)
+  adapter serial serial_string
+        Set the serial number of the adapter (configuration command)
+  adapter speed [khz]
+        With an argument, change to the specified maximum jtag speed.  For
+        JTAG, 0 KHz signifies adaptive clocking. With or without argument,
+        display current setting. (command valid any time)
+  adapter srst
+        srst adapter command group (command valid any time)
+    adapter srst delay [milliseconds]
+          delay after deasserting SRST in ms (command valid any time)
+    adapter srst pulse_width [milliseconds]
+          SRST assertion pulse width in ms (command valid any time)
+  adapter transports transport ...
+        Declare transports the adapter supports. (configuration command)
+  adapter usb
+        usb adapter command group (command valid any time)
+    adapter usb location [<bus>-port[.port]...]
+          display or set the USB bus location of the USB device
+          (configuration command)
+add_help_text command_name helptext_string
+      Add new command help text; Command can be multiple tokens. (command
+      valid any time)
+add_script_search_dir <directory>
+      dir to search for config files and scripts (command valid any time)
+add_usage_text command_name usage_string
+      Add new command usage text; command can be multiple tokens. (command
+      valid any time)
+arm
+      ARM command group (command valid any time)
+  arm core_state ['arm'|'thumb']
+        display/change ARM core state
+  arm disassemble address [count ['thumb']]
+        disassemble instructions
+  arm mcr cpnum op1 CRn CRm op2 value
+        write coprocessor register
+  arm mrc cpnum op1 CRn CRm op2
+        read coprocessor register
+  arm reg
+        display ARM core registers
+  arm semihosting ['enable'|'disable']
+        activate support for semihosting operations
+  arm semihosting_cmdline arguments
+        command line arguments to be passed to program
+  arm semihosting_fileio ['enable'|'disable']
+        activate support for semihosting fileio operations
+  arm semihosting_resexit ['enable'|'disable']
+        activate support for semihosting resumable exit
+array2mem arrayname bitwidth address count
+      convert a TCL array to memory locations and write the 8/16/32 bit
+      values
+bindto [name]
+      Specify address by name on which to listen for incoming TCP/IP
+      connections (configuration command)
+bp [<address> [<asid>] <length> ['hw'|'hw_ctx']]
+      list or set hardware or software breakpoint
+capture command
+      Capture progress output and return as tcl return value. If the
+      progress output was empty, return tcl return value. (command valid
+      any time)
+command
+      core command group (introspection) (command valid any time)
+  command mode [command_name ...]
+        Returns the command modes allowed by a command: 'any', 'config', or
+        'exec'. If no command is specified, returns the current command
+        mode. Returns 'unknown' if an unknown command is given. Command can
+        be multiple tokens. (command valid any time)
+cortex_m
+      Cortex-M command group
+  cortex_m maskisr ['auto'|'on'|'off'|'steponly']
+        mask cortex_m interrupts
+  cortex_m reset_config ['sysresetreq'|'vectreset']
+        configure software reset handling (command valid any time)
+  cortex_m vector_catch ['all'|'none'|('bus_err'|'chk_err'|...)*]
+        configure hardware vectors to trigger debug entry
+cti
+      CTI commands (configuration command)
+  cti create name '-chain-position' name [options ...]
+        Creates a new CTI object (command valid any time)
+  cti names
+        Lists all registered CTI objects by name (command valid any time)
+dap
+      DAP commands (configuration command)
+  dap create name '-chain-position' name
+        Creates a new DAP instance (command valid any time)
+  dap info [ap_num]
+        display ROM table for MEM-AP of current target (default currently
+        selected AP)
+  dap init
+        Initialize all registered DAP instances (command valid any time)
+  dap names
+        Lists all registered DAP instances by name (command valid any time)
+debug_level number
+      Sets the verbosity level of debugging output. 0 shows errors only; 1
+      adds warnings; 2 (default) adds other info; 3 adds debugging; 4 adds
+      extra verbose debugging. (command valid any time)
+dump_image filename address size
+echo [-n] string
+      Logs a message at "user" priority. Option "-n" suppresses trailing
+      newline (command valid any time)
+exit
+      exit telnet session
+expr
+       (command valid any time)
+fast_load
+      loads active fast load image to current target - mainly for profiling
+      purposes
+fast_load_image filename address ['bin'|'ihex'|'elf'|'s19'] [min_address
+          [max_length]]
+      Load image into server memory for later use by fast_load; primarily
+      for profiling (command valid any time)
+find <file>
+      print full path to file according to OpenOCD search rules (command
+      valid any time)
+flash
+      NOR flash command group (command valid any time)
+  flash bank bank_id driver_name base_address size_bytes chip_width_bytes
+            bus_width_bytes target [driver_options ...]
+        Define a new bank with the given name, using the specified NOR
+        flash driver. (configuration command)
+  flash banks
+        Display table with information about flash banks. (command valid
+        any time)
+  flash erase_address ['pad'] ['unlock'] address length
+        Erase flash sectors starting at address and continuing for length
+        bytes.  If 'pad' is specified, data outside that range may also be
+        erased: the start address may be decreased, and length increased,
+        so that all of the first and last sectors are erased. If 'unlock'
+        is specified, then the flash is unprotected before erasing.
+  flash erase_check bank_id
+        Check erase state of all blocks in a flash bank.
+  flash erase_sector bank_id first_sector_num (last_sector_num|'last')
+        Erase a range of sectors in a flash bank.
+  flash fillb address value n
+        Fill n bytes with 8-bit value, starting at word address.  (No
+        autoerase.)
+  flash filld address value n
+        Fill n double-words with 64-bit value, starting at word address. 
+        (No autoerase.)
+  flash fillh address value n
+        Fill n halfwords with 16-bit value, starting at word address.  (No
+        autoerase.)
+  flash fillw address value n
+        Fill n words with 32-bit value, starting at word address.  (No
+        autoerase.)
+  flash info bank_id ['sectors']
+        Print information about a flash bank.
+  flash init
+        Initialize flash devices. (configuration command)
+  flash list
+        Returns a list of details about the flash banks. (command valid any
+        time)
+  flash mdb address [count]
+        Display bytes from flash.
+  flash mdh address [count]
+        Display half-words from flash.
+  flash mdw address [count]
+        Display words from flash.
+  flash padded_value bank_id value
+        Set default flash padded value
+  flash probe bank_id
+        Identify a flash bank.
+  flash protect bank_id first_block [last_block|'last'] ('on'|'off')
+        Turn protection on or off for a range of protection blocks or
+        sectors in a given flash bank. See 'flash info' output for a list
+        of blocks.
+  flash read_bank bank_id filename [offset [length]]
+        Read binary data from flash bank to file. Allow optional offset
+        from beginning of the bank (defaults to zero).
+  flash verify_bank bank_id filename [offset]
+        Compare the contents of a file with the contents of the flash bank.
+        Allow optional offset from beginning of the bank (defaults to
+        zero).
+  flash verify_image filename [offset [file_type]]
+        Verify an image against flash. Allow optional offset from beginning
+        of bank (defaults to zero)
+  flash write_bank bank_id filename [offset]
+        Write binary data from file to flash bank. Allow optional offset
+        from beginning of the bank (defaults to zero).
+  flash write_image [erase] [unlock] filename [offset [file_type]]
+        Write an image to flash.  Optionally first unprotect and/or erase
+        the region to be used. Allow optional offset from beginning of bank
+        (defaults to zero)
+gdb_breakpoint_override ('hard'|'soft'|'disable')
+      Display or specify type of breakpoint to be used by gdb 'break'
+      commands. (command valid any time)
+gdb_flash_program ('enable'|'disable')
+      enable or disable flash program (configuration command)
+gdb_memory_map ('enable'|'disable')
+      enable or disable memory map (configuration command)
+gdb_port [port_num]
+      Normally gdb listens to a TCP/IP port. Each subsequent GDB server
+      listens for the next port number after the base port number
+      specified. No arguments reports GDB port. "pipe" means listen to
+      stdin output to stdout, an integer is base port number, "disabled"
+      disables port. Any other string is are interpreted as named pipe to
+      listen to. Output pipe is the same name as input pipe, but with 'o'
+      appended. (configuration command)
+gdb_report_data_abort ('enable'|'disable')
+      enable or disable reporting data aborts (configuration command)
+gdb_report_register_access_error ('enable'|'disable')
+      enable or disable reporting register access errors (configuration
+      command)
+gdb_save_tdesc
+      Save the target description file
+gdb_sync
+      next stepi will return immediately allowing GDB to fetch register
+      state without affecting target state (command valid any time)
+gdb_target_description ('enable'|'disable')
+      enable or disable target description (configuration command)
+halt [milliseconds]
+      request target to halt, then wait up to the specified number of
+      milliseconds (default 5000) for it to complete
+help [command_name]
+      Show full command help; command can be multiple tokens. (command
+      valid any time)
+init
+      Initializes configured targets and servers.  Changes command mode
+      from CONFIG to EXEC.  Unless 'noinit' is called, this command is
+      called automatically at the end of startup. (command valid any time)
+itm
+      itm command group (command valid any time)
+  itm port <port> (0|1|on|off)
+        Enable or disable ITM stimulus port (command valid any time)
+  itm ports (0|1|on|off)
+        Enable or disable all ITM stimulus ports (command valid any time)
+jlink
+      perform jlink management (command valid any time)
+  jlink config [<cmd>]
+        access the device configuration. If no argument is given this will
+        show the device configuration
+    jlink config ip [A.B.C.D[/E] [F.G.H.I]]
+          set the IP address, where A.B.C.D is the IP address, E the bit of
+          the subnet mask, F.G.H.I the subnet mask
+    jlink config mac [ff:ff:ff:ff:ff:ff]
+          set the MAC Address
+    jlink config reset
+          undo configuration changes
+    jlink config targetpower [on|off]
+          set the target power supply
+    jlink config usb [0-3]
+          set the USB address
+    jlink config write
+          write configuration to the device
+  jlink emucom
+        access EMUCOM channel
+    jlink emucom read <channel> <length>
+          read from a channel
+    jlink emucom write <channel> <data>
+          write to a channel
+  jlink freemem
+        show free device memory
+  jlink hwstatus
+        show the hardware status
+  jlink jtag [2|3]
+        select the JTAG command version
+  jlink targetpower <on|off>
+        set the target power supply
+  jlink usb <0-3>
+        set the USB address of the device that should be used
+        (configuration command)
+jsp_port [port_num]
+      Specify port on which to listen for incoming JSP telnet connections.
+      (command valid any time)
+load_image filename address ['bin'|'ihex'|'elf'|'s19'] [min_address]
+          [max_length]
+log_output [file_name | "default"]
+      redirect logging to a file (default: stderr) (command valid any time)
+mdb ['phys'] address [count]
+      display memory bytes
+mdd ['phys'] address [count]
+      display memory double-words
+mdh ['phys'] address [count]
+      display memory half-words
+mdw ['phys'] address [count]
+      display memory words
+measure_clk
+      Runs a test to measure the JTAG clk. Useful with RCLK / RTCK.
+      (command valid any time)
+mem2array arrayname bitwidth address count
+      read 8/16/32 bit memory and return as a TCL array for script
+      processing
+mmw address setbits clearbits
+      Modify word in memory. new_val = (old_val & ~clearbits) | setbits;
+      (command valid any time)
+mrb address
+      Returns value of byte in memory. (command valid any time)
+mrh address
+      Returns value of halfword in memory. (command valid any time)
+mrw address
+      Returns value of word in memory. (command valid any time)
+ms
+      Returns ever increasing milliseconds. Used to calculate differences
+      in time. (command valid any time)
+mwb ['phys'] address value [count]
+      write memory byte
+mwd ['phys'] address value [count]
+      write memory double-word
+mwh ['phys'] address value [count]
+      write memory half-word
+mww ['phys'] address value [count]
+      write memory word
+nand
+      NAND flash command group (command valid any time)
+  nand device bank_id driver target [driver_options ...]
+        defines a new NAND bank (configuration command)
+  nand drivers
+        lists available NAND drivers (command valid any time)
+  nand init
+        initialize NAND devices (configuration command)
+noinit
+      Prevent 'init' from being called at startup. (configuration command)
+ocd_find file
+      find full path to file (command valid any time)
+pld
+      programmable logic device commands (command valid any time)
+  pld device driver_name [driver_args ... ]
+        configure a PLD device (configuration command)
+  pld init
+        initialize PLD devices (configuration command)
+poll ['on'|'off']
+      poll target state; or reconfigure background polling
+poll_period
+      set the servers polling period (command valid any time)
+power_restore
+      Overridable procedure run when power restore is detected. Runs 'reset
+      init' by default. (command valid any time)
+profile seconds filename [start end]
+      profiling samples the CPU PC
+program <filename> [address] [pre-verify] [verify] [reset] [exit]
+      write an image to flash, address is only required for binary images.
+      verify, reset, exit are optional (command valid any time)
+ps
+      list all tasks
+rbp 'all' | address
+      remove breakpoint
+reg [(register_number|register_name) [(value|'force')]]
+      display (reread from target with "force") or set a register; with no
+      arguments, displays all registers and their values
+reset [run|halt|init]
+      Reset all targets into the specified mode. Default reset mode is run,
+      if not given.
+reset_config [none|trst_only|srst_only|trst_and_srst]
+          [srst_pulls_trst|trst_pulls_srst|combined|separate]
+          [srst_gates_jtag|srst_nogate] [trst_push_pull|trst_open_drain]
+          [srst_push_pull|srst_open_drain]
+          [connect_deassert_srst|connect_assert_srst]
+      configure adapter reset behavior (command valid any time)
+reset_nag ['enable'|'disable']
+      Nag after each reset about options that could have been enabled to
+      improve performance. (command valid any time)
+resume [address]
+      resume target execution from current PC or address
+rtt
+      RTT (command valid any time)
+  rtt channellist
+        list available channels
+  rtt channels
+        list available channels
+  rtt polling_interval [interval]
+        show or set polling interval in ms
+  rtt server
+        RTT server (command valid any time)
+    rtt server start <port> <channel>
+          Start a RTT server (command valid any time)
+    rtt server stop <port>
+          Stop a RTT server (command valid any time)
+  rtt setup <address> <size> <ID>
+        setup RTT (command valid any time)
+  rtt start
+        start RTT
+  rtt stop
+        stop RTT
+rwp address
+      remove watchpoint
+script <file>
+      filename of OpenOCD script (tcl) to run (command valid any time)
+shutdown
+      shut the server down (command valid any time)
+sleep milliseconds ['busy']
+      Sleep for specified number of milliseconds.  "busy" will busy wait
+      instead (avoid this). (command valid any time)
+soft_reset_halt
+      halt the target and do a soft reset
+srst_deasserted
+      Overridable procedure run when srst deassert is detected. Runs 'reset
+      init' by default. (command valid any time)
+step [address]
+      step one instruction from current PC or address
+stm32f1x
+      stm32f1x flash command group (command valid any time)
+  stm32f1x lock bank_id
+        Lock entire flash device.
+  stm32f1x mass_erase bank_id
+        Erase entire flash device.
+  stm32f1x options_load bank_id
+        Force re-load of device option bytes.
+  stm32f1x options_read bank_id
+        Read and display device option bytes.
+  stm32f1x options_write bank_id ('SWWDG'|'HWWDG')
+            ('RSTSTNDBY'|'NORSTSTNDBY') ('RSTSTOP'|'NORSTSTOP') ('USEROPT'
+            user_data)
+        Replace bits in device option bytes.
+  stm32f1x unlock bank_id
+        Unlock entire protected flash device.
+stm32f1x.cpu
+      target command group (command valid any time)
+  stm32f1x.cpu arm
+        ARM command group (command valid any time)
+    stm32f1x.cpu arm core_state ['arm'|'thumb']
+          display/change ARM core state
+    stm32f1x.cpu arm disassemble address [count ['thumb']]
+          disassemble instructions
+    stm32f1x.cpu arm mcr cpnum op1 CRn CRm op2 value
+          write coprocessor register
+    stm32f1x.cpu arm mrc cpnum op1 CRn CRm op2
+          read coprocessor register
+    stm32f1x.cpu arm reg
+          display ARM core registers
+    stm32f1x.cpu arm semihosting ['enable'|'disable']
+          activate support for semihosting operations
+    stm32f1x.cpu arm semihosting_cmdline arguments
+          command line arguments to be passed to program
+    stm32f1x.cpu arm semihosting_fileio ['enable'|'disable']
+          activate support for semihosting fileio operations
+    stm32f1x.cpu arm semihosting_resexit ['enable'|'disable']
+          activate support for semihosting resumable exit
+  stm32f1x.cpu arp_examine ['allow-defer']
+        used internally for reset processing
+  stm32f1x.cpu arp_halt
+        used internally for reset processing
+  stm32f1x.cpu arp_halt_gdb
+        used internally for reset processing to halt GDB
+  stm32f1x.cpu arp_poll
+        used internally for reset processing
+  stm32f1x.cpu arp_reset
+        used internally for reset processing
+  stm32f1x.cpu arp_waitstate
+        used internally for reset processing
+  stm32f1x.cpu array2mem arrayname bitwidth address count
+        Writes Tcl array of 8/16/32 bit numbers to target memory
+  stm32f1x.cpu cget target_attribute
+        returns the specified target attribute (command valid any time)
+  stm32f1x.cpu configure [target_attribute ...]
+        configure a new target for use (command valid any time)
+  stm32f1x.cpu cortex_m
+        Cortex-M command group
+    stm32f1x.cpu cortex_m maskisr ['auto'|'on'|'off'|'steponly']
+          mask cortex_m interrupts
+    stm32f1x.cpu cortex_m reset_config ['sysresetreq'|'vectreset']
+          configure software reset handling (command valid any time)
+    stm32f1x.cpu cortex_m vector_catch
+              ['all'|'none'|('bus_err'|'chk_err'|...)*]
+          configure hardware vectors to trigger debug entry
+  stm32f1x.cpu curstate
+        displays the current state of this target
+  stm32f1x.cpu eventlist
+        displays a table of events defined for this target
+  stm32f1x.cpu examine_deferred
+        used internally for reset processing
+  stm32f1x.cpu invoke-event event_name
+        invoke handler for specified event
+  stm32f1x.cpu itm
+        itm command group (command valid any time)
+    stm32f1x.cpu itm port <port> (0|1|on|off)
+          Enable or disable ITM stimulus port (command valid any time)
+    stm32f1x.cpu itm ports (0|1|on|off)
+          Enable or disable all ITM stimulus ports (command valid any time)
+  stm32f1x.cpu mdb address [count]
+        Display target memory as 8-bit bytes
+  stm32f1x.cpu mdd address [count]
+        Display target memory as 64-bit words
+  stm32f1x.cpu mdh address [count]
+        Display target memory as 16-bit half-words
+  stm32f1x.cpu mdw address [count]
+        Display target memory as 32-bit words
+  stm32f1x.cpu mem2array arrayname bitwidth address count
+        Loads Tcl array of 8/16/32 bit numbers from target memory
+  stm32f1x.cpu mwb address data [count]
+        Write byte(s) to target memory
+  stm32f1x.cpu mwd address data [count]
+        Write 64-bit word(s) to target memory
+  stm32f1x.cpu mwh address data [count]
+        Write 16-bit half-word(s) to target memory
+  stm32f1x.cpu mww address data [count]
+        Write 32-bit word(s) to target memory
+  stm32f1x.cpu rtt
+        RTT target commands
+    stm32f1x.cpu rtt channellist
+          list available channels
+    stm32f1x.cpu rtt channels
+          list available channels
+    stm32f1x.cpu rtt polling_interval [interval]
+          show or set polling interval in ms
+    stm32f1x.cpu rtt setup <address> <size> <ID>
+          setup RTT (command valid any time)
+    stm32f1x.cpu rtt start
+          start RTT
+    stm32f1x.cpu rtt stop
+          stop RTT
+  stm32f1x.cpu tpiu
+        tpiu command group
+    stm32f1x.cpu tpiu config (disable | ((external | internal (<filename> |
+              <:port> | -)) (sync <port width> | ((manchester | uart)
+              <formatter enable>)) <TRACECLKIN freq> [<trace freq>]))
+          Configure TPIU features, DEPRECATED, use 'tpiu create' (command
+          valid any time)
+  stm32f1x.cpu was_examined
+        used internally for reset processing
+stm32f1x.dap
+      dap instance command group (command valid any time)
+  stm32f1x.dap apcsw [value [mask]]
+        Set CSW default bits (command valid any time)
+  stm32f1x.dap apid [ap_num]
+        return ID register from AP (default currently selected AP)
+  stm32f1x.dap apreg ap_num reg [value]
+        read/write a register from AP (reg is byte address of a word
+        register, like 0 4 8...)
+  stm32f1x.dap apsel [ap_num]
+        Set the currently selected AP (default 0) and display the result
+        (command valid any time)
+  stm32f1x.dap baseaddr [ap_num]
+        return debug base address from MEM-AP (default currently selected
+        AP)
+  stm32f1x.dap dpreg reg [value]
+        read/write a register from DP (reg is byte address (bank << 4 |
+        reg) of a word register, like 0 4 8...)
+  stm32f1x.dap info [ap_num]
+        display ROM table for MEM-AP (default currently selected AP)
+  stm32f1x.dap memaccess [cycles]
+        set/get number of extra tck for MEM-AP memory bus access [0-255]
+  stm32f1x.dap ti_be_32_quirks [enable]
+        set/get quirks mode for TI TMS450/TMS570 processors (configuration
+        command)
+swd
+      SWD command group (command valid any time)
+  swd newdap
+        declare a new SWD DAP (configuration command)
+swo
+      swo command group
+  swo create name [-dap dap] [-ap-num num] [-address baseaddr]
+        Creates a new TPIU or SWO object (command valid any time)
+  swo init
+        Initialize TPIU and SWO
+  swo names
+        Lists all registered TPIU and SWO objects by name (command valid
+        any time)
+target
+      configure target (configuration command)
+  target create name type '-chain-position' name [options ...]
+        Creates and selects a new target (configuration command)
+  target current
+        Returns the currently selected target (command valid any time)
+  target init
+        initialize targets (configuration command)
+  target names
+        Returns the names of all targets as a list of strings (command
+        valid any time)
+  target smp targetname1 targetname2 ...
+        gather several target in a smp list (command valid any time)
+  target types
+        Returns the available target types as a list of strings (command
+        valid any time)
+target_request
+      target request command group (command valid any time)
+  target_request debugmsgs ['enable'|'charmsg'|'disable']
+        display and/or modify reception of debug messages from target
+targets [target]
+      change current default target (one parameter) or prints table of all
+      targets (no parameters) (command valid any time)
+tcl_notifications [on|off]
+      Target Notification output
+tcl_port [port_num]
+      Specify port on which to listen for incoming Tcl syntax.  Read help
+      on 'gdb_port'. (configuration command)
+tcl_trace [on|off]
+      Target trace output
+telnet_port [port_num]
+      Specify port on which to listen for incoming telnet connections. 
+      Read help on 'gdb_port'. (configuration command)
+test_image filename [offset [type]]
+test_mem_access size
+      Test the target's memory access functions
+tpiu
+      tpiu command group
+  tpiu config (disable | ((external | internal (<filename> | <:port> | -))
+            (sync <port width> | ((manchester | uart) <formatter enable>))
+            <TRACECLKIN freq> [<trace freq>]))
+        Configure TPIU features, DEPRECATED, use 'tpiu create' (command
+        valid any time)
+  tpiu create name [-dap dap] [-ap-num num] [-address baseaddr]
+        Creates a new TPIU or SWO object (command valid any time)
+  tpiu init
+        Initialize TPIU and SWO
+  tpiu names
+        Lists all registered TPIU and SWO objects by name (command valid
+        any time)
+trace
+      trace command group
+  trace history ['clear'|size]
+        display trace history, clear history or set size
+  trace point ['clear'|address]
+        display trace points, clear list of trace points, or add new
+        tracepoint at address
+transport
+      Transport command group (command valid any time)
+  transport init
+        Initialize this session's transport (command valid any time)
+  transport list
+        list all built-in transports (command valid any time)
+  transport select [transport_name]
+        Select this session's transport (command valid any time)
+usage [command_name]
+      Show basic command usage; command can be multiple tokens. (command
+      valid any time)
+verify_image filename [offset [type]]
+verify_image_checksum filename [offset [type]]
+version
+      show program version (command valid any time)
+virt2phys virtual_address
+      translate a virtual address into a physical address (command valid
+      any time)
+wait_halt [milliseconds]
+      wait up to the specified number of milliseconds (default 5000) for a
+      previously requested halt
+wp [address length [('r'|'w'|'a') value [mask]]]
+      list (no params) or create watchpoints
+</pre>
+
+<!-- #endregion -->
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">TGL</div><div class="author-info__description">个人笔记</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E6%97%A2%E6%9C%89%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%A4%E6%B5%81%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E7%A8%8B%E5%BA%8F/" title="交流道岔表示电压采集模块程序阅读笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="交流道岔表示电压采集模块程序阅读笔记"/></a><div class="content"><a class="title" href="/2023/01/31/%E6%97%A2%E6%9C%89%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%A4%E6%B5%81%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E7%A8%8B%E5%BA%8F/" title="交流道岔表示电压采集模块程序阅读笔记">交流道岔表示电压采集模块程序阅读笔记</a><time datetime="2023-01-31T16:00:00.000Z" title="发表于 2023-02-01 00:00:00">2023-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/mOTA%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="mOTA源码阅读笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mOTA源码阅读笔记"/></a><div class="content"><a class="title" href="/2023/01/11/mOTA%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="mOTA源码阅读笔记">mOTA源码阅读笔记</a><time datetime="2023-01-11T08:28:15.000Z" title="发表于 2023-01-11 16:28:15">2023-01-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/07/Embedded%20Studio%E5%88%9B%E5%BB%BAkeil%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B/" title="Embedded Studio创建用keil ARMCC编译的工程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Embedded Studio创建用keil ARMCC编译的工程"/></a><div class="content"><a class="title" href="/2022/05/07/Embedded%20Studio%E5%88%9B%E5%BB%BAkeil%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B/" title="Embedded Studio创建用keil ARMCC编译的工程">Embedded Studio创建用keil ARMCC编译的工程</a><time datetime="2022-05-07T02:50:00.000Z" title="发表于 2022-05-07 10:50:00">2022-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/11/cmake%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5/" title="cmake学习与实践"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cmake学习与实践"/></a><div class="content"><a class="title" href="/2022/04/11/cmake%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5/" title="cmake学习与实践">cmake学习与实践</a><time datetime="2022-04-11T04:26:33.000Z" title="发表于 2022-04-11 12:26:33">2022-04-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/wxWidgets%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%82%A6%E5%AE%9A/" title="wxWidgets事件表"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="wxWidgets事件表"/></a><div class="content"><a class="title" href="/2022/03/23/wxWidgets%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%82%A6%E5%AE%9A/" title="wxWidgets事件表">wxWidgets事件表</a><time datetime="2022-03-23T06:21:24.000Z" title="发表于 2022-03-23 14:21:24">2022-03-23</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/TH-ISE130-I/"><span class="card-category-list-name">TH-ISE130-I</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/c-c/"><span class="card-category-list-name">c/c++</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/cmake/"><span class="card-category-list-name">cmake</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/cortex-M3/"><span class="card-category-list-name">cortex-M3</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/cortex-M3/lpc1752/"><span class="card-category-list-name">lpc1752</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/ssh/"><span class="card-category-list-name">ssh</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/github/"><span class="card-category-list-name">github</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Embedded-Studio-ARMCC/" style="font-size: 1.1em; color: #999">Embedded Studio,ARMCC</a> <a href="/tags/c-c/" style="font-size: 1.3em; color: #99a1ac">c/c++</a> <a href="/tags/cmake/" style="font-size: 1.1em; color: #999">cmake</a> <a href="/tags/cortex-M3/" style="font-size: 1.1em; color: #999">cortex-M3</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/github/" style="font-size: 1.3em; color: #99a1ac">github</a> <a href="/tags/gnu/" style="font-size: 1.1em; color: #999">gnu</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/lpc1752/" style="font-size: 1.3em; color: #99a1ac">lpc1752</a> <a href="/tags/make/" style="font-size: 1.5em; color: #99a9bf">make</a> <a href="/tags/mingw/" style="font-size: 1.1em; color: #999">mingw</a> <a href="/tags/qt/" style="font-size: 1.1em; color: #999">qt</a> <a href="/tags/ssh/" style="font-size: 1.1em; color: #999">ssh</a> <a href="/tags/vscode/" style="font-size: 1.1em; color: #999">vscode</a> <a href="/tags/windows/" style="font-size: 1.1em; color: #999">windows</a> <a href="/tags/wxwdigets/" style="font-size: 1.1em; color: #999">wxwdigets</a> <a href="/tags/wxwidgets/" style="font-size: 1.5em; color: #99a9bf">wxwidgets</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/02/"><span class="card-archive-list-date">二月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">6</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-02-19T14:37:24.935Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By TGL</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

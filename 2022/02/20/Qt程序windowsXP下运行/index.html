@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Qt程序windowsXP下运行 | 唐国林的个人博客</title><meta name="author" content="TGL"><meta name="copyright" content="TGL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="今天用户反馈新发的工具软件(基于Qt 5.14.2 mingw 7.3.0编写发布的)在windows XP下运行会报错,因为程序源码是没有变动过仅仅是重新编译打包发布给用户，原来程序是能在windows xp上正常运行的。在此期间我升级过MinGM和Qt所以从两个软件的版本开始排查。 mingw编译的程序在windows XP的运行情况开始以为是MinGW-64版本过高引起的错误，于是从MinG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt程序windowsXP下运行">
+<meta property="og:url" content="https://tglingli.github.io/2022/02/20/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/index.html">
+<meta property="og:site_name" content="唐国林的个人博客">
+<meta property="og:description" content="今天用户反馈新发的工具软件(基于Qt 5.14.2 mingw 7.3.0编写发布的)在windows XP下运行会报错,因为程序源码是没有变动过仅仅是重新编译打包发布给用户，原来程序是能在windows xp上正常运行的。在此期间我升级过MinGM和Qt所以从两个软件的版本开始排查。 mingw编译的程序在windows XP的运行情况开始以为是MinGW-64版本过高引起的错误，于是从MinG">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-20T03:43:49.000Z">
+<meta property="article:modified_time" content="2024-02-19T14:37:12.999Z">
+<meta property="article:author" content="TGL">
+<meta property="article:tag" content="qt">
+<meta property="article:tag" content="windows">
+<meta property="article:tag" content="mingw">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://tglingli.github.io/2022/02/20/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Qt程序windowsXP下运行',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-19 22:37:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">唐国林的个人博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Qt程序windowsXP下运行</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-20T03:43:49.000Z" title="发表于 2022-02-20 11:43:49">2022-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-19T14:37:12.999Z" title="更新于 2024-02-19 22:37:12">2024-02-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/qt/">qt</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/qt/qt-5-7/">qt_5.7</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/mingw-64/">mingw-64</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Qt程序windowsXP下运行"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>今天用户反馈新发的工具软件(基于Qt 5.14.2 mingw 7.3.0编写发布的)在windows XP下运行会报错,因为程序源码是没有变动过仅仅是重新编译打包发布给用户，原来程序是能在windows xp上正常运行的。在此期间我升级过MinGM和Qt所以从两个软件的版本开始排查。</p>
+<h2 id="mingw编译的程序在windows-XP的运行情况"><a href="#mingw编译的程序在windows-XP的运行情况" class="headerlink" title="mingw编译的程序在windows XP的运行情况"></a>mingw编译的程序在windows XP的运行情况</h2><p>开始以为是<a target="_blank" rel="noopener" href="https://www.mingw-w64.org/">MinGW-64</a>版本过高引起的错误，于是从<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mingw-w64/files/">MinGW-64下载页面</a>下载了<code>4.8</code>,<code>5.3</code>,<code>7.3</code>,<code>8.1</code>几个版。<br>用不同版本的编译器编译同一个源文件：</p>
+<details>
+
+<summary>HelloWorld.cpp</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> <span class="type">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __GNUC__</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Compiled by MinGW32 Version:&quot;</span> &lt;&lt; __GNUC__ &lt;&lt; <span class="string">&quot;.&quot;</span> &lt;&lt; __GNUC_MINOR__ &lt;&lt; <span class="string">&quot;.&quot;</span> &lt;&lt; __GNUC_PATCHLEVEL__ &lt;&lt; endl;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// __GNUC__</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (argc &lt;= <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">MessageBox</span>(<span class="literal">NULL</span>, <span class="built_in">TEXT</span>(<span class="string">&quot;Hello World!&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;Message:&quot;</span>), MB_OK | MB_ICONWARNING);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;argc: &quot;</span> &lt;&lt; argc &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; argc; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;argv[&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;]: &quot;</span> &lt;&lt; argv[i] &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</details>
+
+<details>
+<summary>不同版本编译器编译的程序在windows xp上的运行情况</summary>
+
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/MinGW_4.8.png"><br><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/MinGW_5.3.png"><br><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/MinGW_7.3.png"><br><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/MinGW_8.1.png"></p>
+</details>
+
+<p>从上面可以看出不同版本的MinGW编译器编译的程序都能成功在Windows XP上运行，排除编译器引起的问题</p>
+<h2 id="Qt不同版本编译的程序在Winddows-XP上运行"><a href="#Qt不同版本编译的程序在Winddows-XP上运行" class="headerlink" title="Qt不同版本编译的程序在Winddows XP上运行"></a>Qt不同版本编译的程序在Winddows XP上运行</h2><p>从<a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/">Qt下载页页</a>分别下载<code>5.1</code>,<code>5.9</code>,<code>5.14</code>几个版windows安装包。在官网的归档页面中没有<code>5.1</code>到<code>5.9</code>的中间版本(2022&#x2F;2&#x2F;20)如下图</p>
+<details>
+
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/Qt%E5%AE%98%E7%BD%91%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6.png"></p>
+</details>
+
+<p>用不同版本的Qt创建一个应用程序工程，并在主窗体中添加一个<code>QTextEdit</code>控件，并在<code>MainWind</code>的构造函数中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">QString str;</span><br><span class="line">str = <span class="built_in">QString</span>(<span class="string">&quot;Qt Version: %1 \r\nmingw compileversion: %2.%3.%4\n&quot;</span>)</span><br><span class="line">        .<span class="built_in">arg</span>(QT_VERSION_STR)</span><br><span class="line">        .<span class="built_in">arg</span>(__GNUC__)</span><br><span class="line">        .<span class="built_in">arg</span>(__GNUC_MINOR__)</span><br><span class="line">        .<span class="built_in">arg</span>(__GNUC_PATCHLEVEL__);</span><br><span class="line">ui-&gt;textEdit-&gt;<span class="built_in">setText</span>(str);</span><br></pre></td></tr></table></figure>
+<p>功能就是在文本框中显示Qt版信息和编译器的版本信息</p>
+<h3 id="Qt5-1-Mingw4-8"><a href="#Qt5-1-Mingw4-8" class="headerlink" title="Qt5.1_Mingw4.8"></a>Qt5.1_Mingw4.8</h3><p>编译程序并打包所有dll文件</p>
+<details>
+<summary>在windows XP下运行情况</summary>
+
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/Qt_5.1_Mingw4.8_xp%E6%8A%A5%E9%94%99.png"></p>
+</details>
+
+<details>
+<summary>在windows 10上的运行情况</summary>
+
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/Qt5.1_windows10.png"></p>
+</details>
+
+<p>从上面运行情况不难看出：同一个程序在windows 10上正常运行而在windows xp上确运行不起。</p>
+<p>在windows xp下安装Qt5.1安装目录下的<code>vcredist_sp1_x86</code>vs2010运行时库依然报错，重新从网上到了Vs2015的运行时库安装后问题依然。而且Qt5.1没有<code>windeployqt</code>工具打包发布程序也不方便。而且之前正常运行的软件都是用<code>windeployqt</code>打包发布的，所试了这个版的下一个版</p>
+<h3 id="Qt5-9-Mingw5-3"><a href="#Qt5-9-Mingw5-3" class="headerlink" title="Qt5.9_Mingw5.3"></a>Qt5.9_Mingw5.3</h3><p>编译程序并用<code>windeployqt</code>打包程序</p>
+<details>
+
+<summary>程序在windows XP运行情况</summary>
+
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/Qt_5.8_xp%E4%B8%8A%E6%8A%A5%E9%94%99.png"></p>
+</details>
+
+<p>同一程序在windows 10上是可以正常运行的。</p>
+<p>在官网<code>https://download.qt.io/archive/qt/</code>下没有比5.9更低的版本了，在网上查了下Qt支持Windows XP的最后版本是<code>5.7</code>该不会Qt故意把社区<code>5.1</code>~&#96;5.9&#96;的这些中间版本给删除了吧！好让用户购买付费版吧。</p>
+<h3 id="Qt5-7-Mingw5-3"><a href="#Qt5-7-Mingw5-3" class="headerlink" title="Qt5.7_Mingw5.3"></a>Qt5.7_Mingw5.3</h3><p>都在想要不要转用<code>wxwidgets</code>重写工具了。寻觅了一天终于在<a target="_blank" rel="noopener" href="https://download.qt.io/new_archive/qt/">这页这个页面</a>找到了这些中间版本</p>
+<details>
+
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/Qt_New_Archive.png"></p>
+</details>
+
+<p>赶紧下载<code>5.7</code>版本编译上面的工程源码并用<code>windeployqt</code>打包程序。<br>程序在windows XP运行如下图：</p>
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/Qt5.7_Mingw5.3.png"></p>
+<p>果然<code>Qt5.7</code>是支持windows XP的，同样下载了<code>Qt5.8</code>程序运行效果跟<code>Qt5.9</code>一致。所以说<code>Qt5.7是支持Windows XP</code>的最后一个版本。</p>
+<p>但<code>Qt5.7</code>带的<code>Qt Creator 4.2.0</code>在高分辨率显示缩放为150%时菜单字显示很小，在<code>Qt14.2</code>带的<code>Qt Creator 4.11.2</code>中就没这个问题了。</p>
+<p>突发奇想要用<code>Qt5.14</code>编译软件用<code>Qt5.7</code>的<code>windeployqt</code>发布软件又会怎样呢?说干就干结果还真出人所了两个版本的软件居然都运行成功了：</p>
+<p><img src="/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/Qt5.14%E7%BC%96%E8%AF%91Qt5.7%E5%8F%91%E5%B8%83.png"></p>
+<p>说明可以用Q5.14编程如果需要发布到window XP上时必须用Qt5.7打包发布。这个也有另一种可能是因为demo中使用的组件少没有报错而以。</p>
+<h3 id="Qt-Creator-4-14"><a href="#Qt-Creator-4-14" class="headerlink" title="Qt Creator 4.14"></a>Qt Creator 4.14</h3><p>上面用<code>Qt5.14</code>编译程序用<code>Qt5.7</code>用打擦边球的方式解决了当前问题，哪有没有更好的方式呢?既能满足高分辨率下定代码,又能满足打包发布到windowsxp上运行。</p>
+<p>既然我用<code>Qt5.14</code>主要用它配的<code>Qt Creator 4.14</code>哪我能不能直接下载新版<code>Qt Creator</code>呢?</p>
+<ol>
+<li>本地安装<code>Qt5.7</code></li>
+<li>从<a target="_blank" rel="noopener" href="https://download.qt.io/archive/qtcreator/">Qt Creator下载页面</a>选择需要的<code>Qt Creator 4.14</code>安装</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://tglingli.github.io">TGL</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tglingli.github.io/2022/02/20/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/">https://tglingli.github.io/2022/02/20/Qt%E7%A8%8B%E5%BA%8FwindowsXP%E4%B8%8B%E8%BF%90%E8%A1%8C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tglingli.github.io" target="_blank">唐国林的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/qt/">qt</a><a class="post-meta__tags" href="/tags/windows/">windows</a><a class="post-meta__tags" href="/tags/mingw/">mingw</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/02/23/Vscode%E7%BC%96%E5%86%99wxWidgets%E7%9A%84HelloWorld/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vscode编写wxWidgets的HelloWorld</div></div></a></div><div class="next-post pull-right"><a href="/2022/02/17/%E5%A6%82%E4%BD%95%E4%BB%8ENXP%E5%AE%98%E7%BD%91%E6%9F%A5%E6%89%BEMCU%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">如何查找NXP的MCU相关资料</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">TGL</div><div class="author-info__description">个人笔记</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#mingw%E7%BC%96%E8%AF%91%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%9C%A8windows-XP%E7%9A%84%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5"><span class="toc-number">1.</span> <span class="toc-text">mingw编译的程序在windows XP的运行情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Qt%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC%E7%BC%96%E8%AF%91%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%9C%A8Winddows-XP%E4%B8%8A%E8%BF%90%E8%A1%8C"><span class="toc-number">2.</span> <span class="toc-text">Qt不同版本编译的程序在Winddows XP上运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-1-Mingw4-8"><span class="toc-number">2.1.</span> <span class="toc-text">Qt5.1_Mingw4.8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-9-Mingw5-3"><span class="toc-number">2.2.</span> <span class="toc-text">Qt5.9_Mingw5.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt5-7-Mingw5-3"><span class="toc-number">2.3.</span> <span class="toc-text">Qt5.7_Mingw5.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Qt-Creator-4-14"><span class="toc-number">2.4.</span> <span class="toc-text">Qt Creator 4.14</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E6%97%A2%E6%9C%89%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%A4%E6%B5%81%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E7%A8%8B%E5%BA%8F/" title="交流道岔表示电压采集模块程序阅读笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="交流道岔表示电压采集模块程序阅读笔记"/></a><div class="content"><a class="title" href="/2023/01/31/%E6%97%A2%E6%9C%89%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BA%A4%E6%B5%81%E9%81%93%E8%A1%A8%E6%A8%A1%E5%9D%97%E7%A8%8B%E5%BA%8F/" title="交流道岔表示电压采集模块程序阅读笔记">交流道岔表示电压采集模块程序阅读笔记</a><time datetime="2023-01-31T16:00:00.000Z" title="发表于 2023-02-01 00:00:00">2023-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/mOTA%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="mOTA源码阅读笔记"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mOTA源码阅读笔记"/></a><div class="content"><a class="title" href="/2023/01/11/mOTA%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" title="mOTA源码阅读笔记">mOTA源码阅读笔记</a><time datetime="2023-01-11T08:28:15.000Z" title="发表于 2023-01-11 16:28:15">2023-01-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/07/Embedded%20Studio%E5%88%9B%E5%BB%BAkeil%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B/" title="Embedded Studio创建用keil ARMCC编译的工程"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Embedded Studio创建用keil ARMCC编译的工程"/></a><div class="content"><a class="title" href="/2022/05/07/Embedded%20Studio%E5%88%9B%E5%BB%BAkeil%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B/" title="Embedded Studio创建用keil ARMCC编译的工程">Embedded Studio创建用keil ARMCC编译的工程</a><time datetime="2022-05-07T02:50:00.000Z" title="发表于 2022-05-07 10:50:00">2022-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/11/cmake%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5/" title="cmake学习与实践"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cmake学习与实践"/></a><div class="content"><a class="title" href="/2022/04/11/cmake%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E8%B7%B5/" title="cmake学习与实践">cmake学习与实践</a><time datetime="2022-04-11T04:26:33.000Z" title="发表于 2022-04-11 12:26:33">2022-04-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/23/wxWidgets%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%82%A6%E5%AE%9A/" title="wxWidgets事件表"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="wxWidgets事件表"/></a><div class="content"><a class="title" href="/2022/03/23/wxWidgets%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%82%A6%E5%AE%9A/" title="wxWidgets事件表">wxWidgets事件表</a><time datetime="2022-03-23T06:21:24.000Z" title="发表于 2022-03-23 14:21:24">2022-03-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By TGL</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
